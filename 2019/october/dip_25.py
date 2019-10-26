@@ -37,7 +37,7 @@ class Solution:
         node1, node2 = l1, l2
         node = out
 
-        # Sum common digits
+        # Sum common length of digits
         n1, n2 = len(l1), len(l2)
         n = min(n1, n2)
         for _ in range(n-1):
@@ -49,15 +49,14 @@ class Solution:
 
         # Append extra digits
         if n1 != n2:
-            m = max(n1, n2)
-            node1 = node1 if m == n1 else node2
-            for _ in range(m-n):
-                node1 = node1.next + inc
-                node.next = ListNode(node1.val)
+            node1 = node1 if n == n2 else node2
+            while node1.next:
+                node1 = node1.next
+                node.next = ListNode(node1.val + inc)
                 node = node.next
                 inc = 0
         else:
-            # Handle case if last sum was higher than 9
+            # Handle case if last sum was greater than 9
             if val > 9:
                 node.next = ListNode(1)
         return out
@@ -75,4 +74,5 @@ while result:
     print(result.val)
     result = result.next
 
-# %%
+#%% [markdown]
+# Note that the easiest way to solve this test in Python would have been to convert the linked-lists as integers (list -> str -> int), do the addition of integers and store the digits of the resulting integer in a linked-list, but I do not think that's the purpose of this test...
