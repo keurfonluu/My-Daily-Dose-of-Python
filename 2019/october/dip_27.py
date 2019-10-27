@@ -4,17 +4,13 @@
 #%%
 class Solution: 
     def longestPalindrome(self, s):
-        n = len(s)
-        l = set()
+        n = len(s)      # Length of string
+        l = set()       # List of possible subpalindromes
         for i in range(n):
-            pal, count = "", 0
-            for c in s[::-1]:
-                if c == s[min(i+count, n-1)]:
-                    pal += c
-                    count += 1
-                else:
-                    l.add(pal)
-                    pal, count = "", 0
+            for j in range(i, n):
+                ss = s[i:j]
+                if ss == ss[::-1]:
+                    l.add(ss)
         return max(l, key = len)
         
 # Test program
