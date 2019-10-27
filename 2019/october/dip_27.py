@@ -8,11 +8,11 @@ class Solution:
         l = set()       # List of possible subpalindromes
         for i in range(n):
             for j in range(i, n):
-                ss = s[i:j]
+                ss = s[i:j+1]
                 if ss == ss[::-1]:
                     l.add(ss)
         return max(l, key = len)
         
 # Test program
-s = "tracecars"
+s = "tracecar"
 print(str(Solution().longestPalindrome(s)))
