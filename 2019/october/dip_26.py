@@ -6,16 +6,12 @@ class Solution:
     def lengthOfLongestSubstring(self, s):
         n = 1           # Initial length
         l = set()       # List of characters in current substring
-        count = 0       # Counter
         for c in s:
             if c not in l:
-                count += 1
                 l.add(c)
             else:
-                n = max(n, count)
+                n = max(n, len(l))
                 l = set()
-                count = 0
-        n = max(n, count)
-        return n
+        return max(n, len(l))
 
 print(Solution().lengthOfLongestSubstring('abrkaabcdefghijjxxx'))
