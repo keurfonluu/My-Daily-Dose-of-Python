@@ -23,32 +23,29 @@
 class Solution:
     def isValid(self, s):
         if s:
-            # Convert string to bracket type
-            brackets = {
-                "(": "round",   ")": "round",
-                "[": "box",     "]": "box",
-                "{": "brace",   "}": "brace",
-            }
+            # Corresponding opening brackets
+            brackets = { ")": "(", "]": "[", "}": "{" }
 
-            # +1 if opening new bracket, -1 is closing bracket
-            increment = {
-                "(": +1,        ")": -1,
-                "[": +1,        "]": -1,
-                "{": +1,        "}": -1,
-            }
-
-            # Brackets are closed before being opened if counter < 0
-            counter = { k: 0 for k in set(brackets.values()) }
+            # Check that brackets are closed in the correct order
+            stack = []
             for b in s:
-                counter[brackets[b]] += increment[b]
-                if counter[brackets[b]] < 0:
-                    return False
+                if b in { "(", "[", "{" }:
+                    stack.append(b)
+                else:
+                    if stack:
+                        if stack[-1] == brackets[b]:
+                            stack.pop(-1)
+                        else:
+                            return False
+                    # Not valid if closing bracket while stack is empty
+                    else:
+                        return False
 
-            # Check that opened brackets are all closed i.e. counter == 0
-            if all(c == 0 for c in counter.values()):
-                return True
-            else:
+            # Not all brackets are closed if stack is not empty
+            if stack:
                 return False
+            else:
+                return True
         # True if empty string
         else:
             return True
