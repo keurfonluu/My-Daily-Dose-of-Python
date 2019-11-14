@@ -10,14 +10,24 @@
 
 #%%
 def word_search(matrix, word):
+    def is_present(word, lst):
+        """
+        Check if word is present in string (list of characters).
+        """
+        n, m = len(word), len(lst)
+        for i in range(m-n+1):
+            if "".join(lst[i:i+n]) == word:
+                return True
+        return False
+
     # Check rows
     for row in matrix:
-        if "".join(row) == word:
+        if is_present(word, row):
             return True
 
     # Check columns
     for column in zip(*matrix):
-        if "".join(column) == word:
+        if is_present(word, column):
             return True
     
     return False
