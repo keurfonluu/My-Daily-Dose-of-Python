@@ -10,7 +10,7 @@
 #%%
 def witnesses(heights):
     n = 1               # First in line can always see in front of him
-    h = heights[-1]     # Height of person in front of current person
+    h = heights[-1]     # Height of tallest person in front of current person
     for height in heights[-2::-1]:
         n += 1 if height > h else 0
         h = max(height, h)
