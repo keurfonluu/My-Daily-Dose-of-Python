@@ -16,7 +16,4 @@ def witnesses(heights):
         h = max(height, h)
     return n
 
-
 print(witnesses([3, 6, 3, 4, 1]))
-
-# %%
