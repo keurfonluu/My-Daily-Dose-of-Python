@@ -11,7 +11,7 @@
 #%%
 def sortNums(nums):
     i, imin, imax = 0, 0, len(nums)-1
-    while i < imax:
+    while i <= imax:
         # Move 1 to position imin
         if nums[i] == 1:
             nums[i], nums[imin] = nums[imin], nums[i]
