@@ -41,6 +41,3 @@ root.left.left = Node('d')
 root.right = Node('c')
 
 print(deepest(root, 1))
-
-
-# %%
